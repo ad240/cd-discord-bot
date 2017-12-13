@@ -19,7 +19,7 @@ function userInfo(user, guild){
     var userCreated = user.createdAt.toString().split(' ');
     finalString += ', was **created on ' + userCreated[1] + ' ' + userCreated[2] + ', ' + userCreated[3] + '**.'
     // Messages Sent
-    finalString += ' They have sent **' + userData[user.id + guild.id].messagesSent + ' messages** to this server.'
+    finalString += ' They have sent at least **' + userData[user.id + guild.id].messagesSent + ' messages** to this server.'
     return finalString;
 }
 
@@ -34,7 +34,7 @@ bot.on('message', message => {
     var sender = message.author;
     var msg = message.content.toUpperCase();
     var userlist = message.mentions.users;
-    var flaggedWords = ["TRUMP","TRAP","TRAPS","TRAPPING","SISSY","KIK","FETLIFE","BANG","BANGABLE","FUCKABLE","BULGE","BULDGE","FAG","CUNT","FAGGOT","FAGGET","NIGGER","WEBCAM","CHATURBATE","RAPE","RAPING","TRANNY","TRANNIES","PORN","LADYBOY","XHAMSTER.COM","YOUPORN.COM","XTUBE.COM","CAM4.COM","DEALNEWS.COM","CROSSDRESSCLOTHING.COM","FASHION4PLAY.NET","PAULA-ANN.COMLU.COM","TRANSBETTY.COM","TRANNYLADIES.INFO","TRANNYSITES.INFO","CROSSDRESSINGCLOSET.COM","WORLDOFCROSSDRESSING.COM","SEX.COM","CROSSDRESSNOW.BLOGSPOT.COM","EMPEOPLED.COM","IMGBOX.COM","IMAGEFAP.COM","REAL-DATING.ORG","JANETSCLOSET.COM","JANETSCLOSET.TUMBLR.COM","FINIXP.COM","JYEADS.COM","PWTCITY.COM","MIAUTTY.COM","TRANSCENDMOVEMENT.COM","VAMPIREFREAKS.COM","EROSHARE.COM","FEMINIZATIONSECRETS.COM","TRANNYCAMVIDEOS.COM","POSTIMG.ORG","DRSUSANBLOCKINSTITUTE.COM","FEMININA.EU","YOUCARING.COM","CROSSDRESSERHEAVEN.COM","ETMZ.US","TVCHIX.COM","LADYBOYREVIEW.COM","IMAGEFAP.COM","EXTRALUNCHMONEY.COM"];
+    var flaggedWords = ["TRUMP","TRAP","TRAPS","TRAPPING","SISSY","KIK","FETLIFE","BANG","BANGABLE","FUCKABLE","BULGE","BULDGE","FAG","CUNT","FAGGOT","FAGGET","NIGGER","WEBCAM","CHATURBATE","RAPE","RAPING","TRANNY","TRANNIES","PORN","LADYBOY","XHAMSTER.COM","YOUPORN.COM","XTUBE.COM","CAM4.COM","DEALNEWS.COM","CROSSDRESSCLOTHING.COM","FASHION4PLAY.NET","PAULA-ANN.COMLU.COM","TRANSBETTY.COM","TRANNYLADIES.INFO","TRANNYSITES.INFO","CROSSDRESSINGCLOSET.COM","WORLDOFCROSSDRESSING.COM","SEX.COM","CROSSDRESSNOW.BLOGSPOT.COM","EMPEOPLED.COM","IMGBOX.COM","IMAGEFAP.COM","REAL-DATING.ORG","JANETSCLOSET.COM","JANETSCLOSET.TUMBLR.COM","FINIXP.COM","JYEADS.COM","PWTCITY.COM","MIAUTTY.COM","TRANSCENDMOVEMENT.COM","VAMPIREFREAKS.COM","EROSHARE.COM","FEMINIZATIONSECRETS.COM","TRANNYCAMVIDEOS.COM","POSTIMG.ORG","DRSUSANBLOCKINSTITUTE.COM","FEMININA.EU","YOUCARING.COM","CROSSDRESSERHEAVEN.COM","ETMZ.US","TVCHIX.COM","LADYBOYREVIEW.COM","IMAGEFAP.COM","EXTRALUNCHMONEY.COM,CUCK,BONER"];
 
     // Ignore Bot Messages
     if(sender.id == '389149738219339786'){
@@ -53,12 +53,19 @@ bot.on('message', message => {
         if(err) console.error(err);
     })
 
-    // Sends message to admin page when a non admin or test user passes a set number of messages
+        // Sends message to admin channel when a non admin or test user passes a set number of messages
     if(userData[sender.id + message.guild.id].messagesSent === 100){
         if(!message.member.roles.find("name", "Admin"||"Test")){
-            bot.channels.get('389161550797078538').send(message.author + ' has sent ' + userData[sender.id + message.guild.id].messagesSent + ' recorded messages to this server .');
+            bot.channels.get('389161550797078538').send(message.author + ' has ' + userData[sender.id + message.guild.id].messagesSent + ' recorded messages to this server .');
         }
     }
+
+    // if(userData[sender.id + message.guild.id].messagesSent > 149){
+    //     if(!message.member.roles.find("name", "Admin"||"Test")){
+    //         userData[sender.id + message.guild.id].messagesSent = 0;
+    //         bot.channels.get('389161550797078538').send(message.author + ' has reached 150 messages. UserData entry deleted.');
+    //     }
+    // }
 
     // UserInfo Command
     if(msg.startsWith(prefix + 'USERINFO')){
@@ -144,13 +151,19 @@ bot.on('message', message => {
             }
         }
     }
+    // Print UserData Command
+    // if(msg.startsWith(prefix + 'USERDATA')){
+    //     if(msg===prefix + 'USERDATA'){
+    //         message.channel.send(userData);
+    //     }
+    // }
 });
 
 //Bot stuff
 
 bot.on('ready', message => {
     //console.log('Bot started.')
-    //bot.channels.get('389161550797078538').send('Beep boop, I am now online!');
+    bot.channels.get('389161550797078538').send('Beep boop, bot online!');
 });
 
 bot.login(process.env.BOT_TOKEN);
