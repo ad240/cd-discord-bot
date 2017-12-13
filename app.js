@@ -19,7 +19,7 @@ function userInfo(user, guild){
     var userCreated = user.createdAt.toString().split(' ');
     finalString += ', was **created on ' + userCreated[1] + ' ' + userCreated[2] + ', ' + userCreated[3] + '**.'
     // Messages Sent
-    finalString += ' This bot has recorded **' + userData[user.id + guild.id].messagesSent + ' messages** sent to this server.'
+    finalString += ' They have sent at least **' + userData[user.id + guild.id].messagesSent + ' messages** to this server.'
     return finalString;
 }
 
@@ -98,7 +98,7 @@ bot.on('message', message => {
                     messagesSent: 0
                 }
                 userData[uID + message.guild.id].messagesSent = newMsgSent;
-                message.channel.send(uID + '\'s message count set to ' + args[1] '.'); // Lets post into chat how many messages a user now has
+                message.channel.send(uID + '\'s message count set to ' + args[1]); // Lets post into chat how many messages a user now has
             // })
         }
 
@@ -130,7 +130,7 @@ bot.on('message', message => {
             }
 
             const fetched = await message.channel.fetchMessages({limit: args[0]}); // This grabs the last number(args) of messages in the channel.
-            //console.log(fetched.size + ' messages found, deleting...'); // Lets post into console how many messages we are deleting
+            console.log(fetched.size + ' messages found, deleting...'); // Lets post into console how many messages we are deleting
 
             // Deleting the messages
             message.channel.bulkDelete(fetched)
@@ -167,4 +167,3 @@ bot.on('ready', message => {
 });
 
 bot.login(process.env.BOT_TOKEN);
-//bot.login('Mzg5MTQ5NzM4MjE5MzM5Nzg2.DQ3tlA.uo_0M4wGCBtpbyPn_yMdaGqTeb4');
