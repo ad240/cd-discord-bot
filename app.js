@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-// const prefix = '~';
+const prefix = '~';
 // var fs = require('fs');
 // var userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 
