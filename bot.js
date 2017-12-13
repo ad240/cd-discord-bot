@@ -168,4 +168,4 @@ bot.on('ready', message => {
 	bot.channels.get('389161550797078538').send('Beep boop, I am now online!');
 });
 
-client.login(process.env.BOT_TOKEN);
+bot.login(process.env.BOT_TOKEN);
