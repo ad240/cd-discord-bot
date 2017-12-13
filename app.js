@@ -91,7 +91,7 @@ bot.on('message', message => {
                     messagesSent: 0
                 }
                 userData[uID + message.guild.id].messagesSent = newMsgSent;
-                message.channel.send(uID + '\`s message count set to ' + args[1]); // Lets post into chat how many messages a user now has
+                message.channel.send(uID + '\'s message count set to ' + args[1]); // Lets post into chat how many messages a user now has
             // })
         }
 
