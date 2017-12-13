@@ -19,7 +19,7 @@ function userInfo(user, guild){
     var userCreated = user.createdAt.toString().split(' ');
     finalString += ', was **created on ' + userCreated[1] + ' ' + userCreated[2] + ', ' + userCreated[3] + '**.'
     // Messages Sent
-    finalString += ' They have sent at least **' + userData[user.id + guild.id].messagesSent + ' messages** to this server.'
+    finalString += ' This bot has recorded **' + userData[user.id + guild.id].messagesSent + ' messages** sent to this server.'
     return finalString;
 }
 
@@ -56,7 +56,7 @@ bot.on('message', message => {
         // Sends message to admin channel when a non admin or test user passes a set number of messages
     if(userData[sender.id + message.guild.id].messagesSent === 100){
         if(!message.member.roles.find("name", "Admin"||"Test")){
-            bot.channels.get('389161550797078538').send(message.author + ' has ' + userData[sender.id + message.guild.id].messagesSent + ' recorded messages to this server .');
+            bot.channels.get('389161550797078538').send(message.author + ' has sent ' + userData[sender.id + message.guild.id].messagesSent + ' messages to this server .');
         }
     }
 
