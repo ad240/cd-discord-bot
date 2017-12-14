@@ -5,26 +5,6 @@ var fs = require('fs');
 var userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
     var flaggedWords = ["TRUMP","TRAP","TRAPS","TRAPPING","SISSY","KIK","FETLIFE","BANG","BANGABLE","FUCKABLE","BULGE","BULDGE","FAG","CUNT","FAGGOT","FAGGET","NIGGER","WEBCAM","CHATURBATE","RAPE","RAPING","TRANNY","TRANNIES","PORN","LADYBOY","XHAMSTER.COM","YOUPORN.COM","XTUBE.COM","CAM4.COM","DEALNEWS.COM","CROSSDRESSCLOTHING.COM","FASHION4PLAY.NET","PAULA-ANN.COMLU.COM","TRANSBETTY.COM","TRANNYLADIES.INFO","TRANNYSITES.INFO","CROSSDRESSINGCLOSET.COM","WORLDOFCROSSDRESSING.COM","SEX.COM","CROSSDRESSNOW.BLOGSPOT.COM","EMPEOPLED.COM","IMGBOX.COM","IMAGEFAP.COM","REAL-DATING.ORG","JANETSCLOSET.COM","JANETSCLOSET.TUMBLR.COM","FINIXP.COM","JYEADS.COM","PWTCITY.COM","MIAUTTY.COM","TRANSCENDMOVEMENT.COM","VAMPIREFREAKS.COM","EROSHARE.COM","FEMINIZATIONSECRETS.COM","TRANNYCAMVIDEOS.COM","POSTIMG.ORG","DRSUSANBLOCKINSTITUTE.COM","FEMININA.EU","YOUCARING.COM","CROSSDRESSERHEAVEN.COM","ETMZ.US","TVCHIX.COM","LADYBOYREVIEW.COM","IMAGEFAP.COM","EXTRALUNCHMONEY.COM","CUCK","BONER"];
 
-    //  CHANNEL IDS
-    //  #general:   389150189719388173
-    //  #general2:  389203836067119104
-    //  #staff:     389639792960339979
-    //  #admin:     389161550797078538
-
-function userInfo(user, guild){
-    var finalString = '';
-
-    // Name
-    finalString += '**' + user.username + '**, with the ID of **' + user.id + '**'
-    // Created at Date
-    var userCreated = user.createdAt.toString().split(' ');
-    finalString += ', was **created on ' + userCreated[1] + ' ' + userCreated[2] + ', ' + userCreated[3] + '**.'
-    // Messages Sent
-    finalString += ' This bot has recorded **' + userData[user.id + guild.id].messagesSent + ' messages** sent to this server.'
-    return finalString;
-}
-
-//Purge Command
 bot.on('message', message => {
 
     // Variables - Variables make it easy to call things, since it requires less typing.
@@ -45,6 +25,7 @@ bot.on('message', message => {
     if(!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {
         messagesSent: 0
     }
+
     // Add 1 to user's message count
     userData[sender.id + message.guild.id].messagesSent++;
    
@@ -53,13 +34,13 @@ bot.on('message', message => {
         if(err) console.error(err);
     })
 
-        // Sends message to admin channel when a non admin or test user passes a set number of messages
+    // Sends message to admin channel when a non admin or test user passes a set number of messages
     if(userData[sender.id + message.guild.id].messagesSent === 100){
-        if(!message.member.roles.find("name", "Admin"||"Test")){
-            bot.channels.get('389161550797078538').send(message.author + ' has ' + userData[sender.id + message.guild.id].messagesSent + ' recorded messages to this server .');
+        if(!message.member.roles.find("name", "Admin"||"Trusted"||"Moderator")){
+            bot.channels.get('297364833756643329').send(message.author + ' has ' + userData[sender.id + message.guild.id].messagesSent + ' recorded messages to this server .');
         }
     }
-    
+
     // SET USERINFO
     if (msg.startsWith(prefix + 'SETUSERINFO')) { // This time we have to use startsWith, since we will be adding a number to the end of the command.
         // We have to wrap this in an async since awaits only work in them.
@@ -130,10 +111,10 @@ bot.on('message', message => {
     }
 
     // Flagged Words Notification
-    if(!(message.channel.id == '389639792960339979' || message.channel.id == '389161550797078538')){ //ignores messages in #Staff and #Admin channels
+    if(!(message.channel.id == '337587604859912193' || message.channel.id == '297364833756643329')){ //ignores messages in #Staff and #Admin channels
         for(var i=0; i<flaggedWords.length; i++){
             if(msg.includes(flaggedWords[i])){
-                bot.channels.get('389639792960339979').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '.');
+                bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '.');
             }
         }
     }
@@ -145,25 +126,36 @@ bot.on('message', message => {
             if (!message.member.roles.find("name", "Admin")) { // This checks to see if they DONT have it, the "!" inverts the true/false
                 message.channel.send('You need the \`Admin\` role to use this command.'); // This tells the user in chat that they need the role.
                 return; // this returns the code, so the rest doesn't run.
-            }           
+            }
             var newWord = args[0];
             flaggedWords.push(newWord);
+            //var flaggedWords = flaggedWords.concat(newWord);
+            console.log(newWord)
+            console.log(flaggedWords)
         }
         // We want to make sure we call the function whenever the purge command is run.
         addWord(); // Make sure this is inside the if(msg.startsWith)
+        
     }
- // Add Filter Word
+
+    // Help
     if (msg.startsWith(prefix + 'HELP')) { // This time we have to use startsWith, since we will be adding a number to the end of the command.
         // We have to wrap this in an async since awaits only work in them.
        message.channel.send('**CD SERVER BOT COMMANDS** \n **~!setuserinfo <userID> <number>**: sets a specific user\'s message count to the number entered. \n **~!addword <WORD>**: Adds word to list of flagged words. Must be entered in all CAPS.')
     }
+
+    // Bot Intro (one time only)
+    if (msg.startsWith(prefix + 'BOT-INTRO')) { 
+       bot.channels.get('338717817517899779').send('BEEP BOOP HELLO MY NAME IS HUMAN NAME, I AM A HUMAN, JUST LIKE YOU BOOP BEEP');
+    }
+
 });
 
 //Bot stuff
 
 bot.on('ready', message => {
     //console.log('Bot started.')
-    bot.channels.get('389161550797078538').send('Beep boop, bot online!');
+    bot.channels.get('390688064130777088').send('Beep boop, bot online!');
 });
 
 bot.login(process.env.BOT_TOKEN);
