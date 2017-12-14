@@ -109,11 +109,6 @@ bot.on('message', message => {
         // We have to wrap this in an async since awaits only work in them.
        message.channel.send('**CD SERVER BOT COMMANDS** \n **~!setuserinfo <userID> <number>**: sets a specific user\'s message count to the number entered. \n **~!addword <WORD>**: Adds word to list of flagged words. Must be entered in all CAPS.')
     }
-
-    // Bot Intro (one time only)
-    if (msg.startsWith(prefix + 'BOT-INTRO')) { 
-       bot.channels.get('338717817517899779').send('BEEP BOOP HELLO MY NAME IS HUMAN NAME, I AM A HUMAN, JUST LIKE YOU BOOP BEEP');
-    }
 });
 
 //Bot stuff
