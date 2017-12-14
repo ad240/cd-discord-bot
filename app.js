@@ -75,6 +75,7 @@ bot.on('message', message => {
         fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
             if(err) console.error(err);
         })
+    }
 
     // Flagged Words Notification
     if(!(message.channel.id == '337587604859912193' || message.channel.id == '297364833756643329' || message.channel.id == '390688064130777088')){ //ignores messages in #Staff and #Admin channels
@@ -84,6 +85,7 @@ bot.on('message', message => {
             }
         }
     }
+    
 
     // Add Filter Word
     if (msg.startsWith(prefix + 'ADDWORD')) { // This time we have to use startsWith, since we will be adding a number to the end of the command.
@@ -114,7 +116,6 @@ bot.on('message', message => {
     if (msg.startsWith(prefix + 'BOT-INTRO')) { 
        bot.channels.get('338717817517899779').send('BEEP BOOP HELLO MY NAME IS HUMAN NAME, I AM A HUMAN, JUST LIKE YOU BOOP BEEP');
     }
-
 });
 
 //Bot stuff
