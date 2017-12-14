@@ -97,9 +97,7 @@ bot.on('message', message => {
             }
             var newWord = args[0];
             flaggedWords.push(newWord);
-            //var flaggedWords = flaggedWords.concat(newWord);
-            console.log(newWord)
-            console.log(flaggedWords)
+            message.channel.send('"' + newWord + '" added to filter!'); // Lets post into chat how many messages a user now has
         }
         // We want to make sure we call the function whenever the purge command is run.
         addWord(); // Make sure this is inside the if(msg.startsWith)
