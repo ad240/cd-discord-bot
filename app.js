@@ -81,7 +81,7 @@ bot.on('message', message => {
     if(!(message.channel.id == '337587604859912193' || message.channel.id == '297364833756643329' || message.channel.id == '390688064130777088')){ //ignores messages in #Staff and #Admin channels
         for(var i=0; i<flaggedWords.length; i++){
             if(msg.includes(flaggedWords[i])){
-                bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '.');
+                bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage:' + message.content);
             }
         }
     }
