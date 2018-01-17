@@ -84,7 +84,6 @@ bot.on('message', message => {
             var testWord = eval(flaggedWordsRegEx[i]);
             if(message.content.match(testWord)){
                     bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"');
-                }
             }
         }
     }
