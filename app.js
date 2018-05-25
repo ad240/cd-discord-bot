@@ -107,20 +107,30 @@ bot.on('message', message => {
     }
     
     //Botspeak
-    if(msg.startsWith('BOTSPEAK|')){
-        var speakMsg = message.content.slice(8).split("|"); // This variable slices off the prefix, then puts the rest in an array based off the spaces
-        var speakCh = speakMsg[1];
-        if(speakCh == 'admin'){
-            channelID = '297364833756643329'
-        }
-//         if(speakCh == 'general_chat'){
-//             channelID = '293801174178594816'
-//         }
-//         if(speakCh == 'crossdressing'){
-//             channelID = '293792079702917125'
-//         }
-        bot.channels.get(channelID).send(speakMsg[2]);
-     }
+    if((message.channel.id == '390688064130777088')){
+        if(msg.startsWith('BOTSPEAK|')){
+            if (!message.member.roles.find("name", "Admin")) { // This checks to see if they DONT have it, the "!" inverts the true/false
+                    message.channel.send('You cannot use this command.'); // This tells the user in chat that they need the role.
+                    return; // this returns the code, so the rest doesn't run.
+            }
+            var speakMsg = message.content.slice(8).split("|"); // This variable slices off the prefix, then puts the rest in an array based off the spaces
+            var speakCh = speakMsg[1];
+            if(!(speakCh == 'general_chat' || speakCh == 'crossdressing' )){
+                message.channel.send('Channel Name Invalid.'); // This tells the user in chat that they need the role.
+                return;
+            }
+            if(speakCh == 'general_chat'){
+                channelID = '293801174178594816'
+            }
+            if(speakCh == 'crossdressing'){
+                channelID = '293792079702917125'
+            }
+            if(speakCh == 'admin'){
+                channelID = '297364833756643329'
+            }
+            bot.channels.get(channelID).send(speakMsg[2]);
+         }
+    }
     
     // Help
     if (msg.startsWith(prefix + 'HELP')) { // This time we have to use startsWith, since we will be adding a number to the end of the command.
