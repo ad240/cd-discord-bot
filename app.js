@@ -113,6 +113,21 @@ bot.on('message', message => {
     }
 });
 
+    if(msg.startsWith('BOTSPEAK|')){
+        var speakMsg = message.content.slice(8).split("|"); // This variable slices off the prefix, then puts the rest in an array based off the spaces
+        var speakCh = speakMsg[1];
+        if(speakCh == 'admin'){
+            channelID = '297364833756643329'
+        }
+//         if(speakCh == 'general_chat'){
+//             channelID = '293801174178594816'
+//         }
+//         if(speakCh == 'crossdressing'){
+//             channelID = '293792079702917125'
+//         }
+        bot.channels.get(channelID).send(speakMsg[2]);
+     }
+
 //Bot stuff
 
 bot.on('ready', message => {
