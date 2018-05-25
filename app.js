@@ -115,7 +115,7 @@ bot.on('message', message => {
             }
             var speakMsg = message.content.slice(8).split("|"); // This variable slices off the prefix, then puts the rest in an array based off the spaces
             var speakCh = speakMsg[1];
-            if(!(speakCh == 'general_chat' || speakCh == 'crossdressing' )){
+            if(!(speakCh == 'general_chat' || speakCh == 'crossdressing' || speakCh == 'admin' )){
                 message.channel.send('Channel Name Invalid.'); // This tells the user in chat that they need the role.
                 return;
             }
