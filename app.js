@@ -105,14 +105,8 @@ bot.on('message', message => {
         addWord(); // Make sure this is inside the if(msg.startsWith)
         
     }
-
-    // Help
-    if (msg.startsWith(prefix + 'HELP')) { // This time we have to use startsWith, since we will be adding a number to the end of the command.
-        // We have to wrap this in an async since awaits only work in them.
-       message.channel.send('**CD SERVER BOT COMMANDS** \n **~!setuserinfo <userID> <number>**: sets a specific user\'s message count to the number entered. \n **~!addword <WORD>**: Adds word to list of flagged words. Must be entered in all CAPS.')
-    }
-});
-
+    
+    //Botspeak
     if(msg.startsWith('BOTSPEAK|')){
         var speakMsg = message.content.slice(8).split("|"); // This variable slices off the prefix, then puts the rest in an array based off the spaces
         var speakCh = speakMsg[1];
@@ -127,6 +121,13 @@ bot.on('message', message => {
 //         }
         bot.channels.get(channelID).send(speakMsg[2]);
      }
+    
+    // Help
+    if (msg.startsWith(prefix + 'HELP')) { // This time we have to use startsWith, since we will be adding a number to the end of the command.
+        // We have to wrap this in an async since awaits only work in them.
+       message.channel.send('**CD SERVER BOT COMMANDS** \n **~!setuserinfo <userID> <number>**: sets a specific user\'s message count to the number entered. \n **~!addword <WORD>**: Adds word to list of flagged words. Must be entered in all CAPS.')
+    }
+});
 
 //Bot stuff
 
