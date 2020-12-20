@@ -92,7 +92,7 @@ bot.on('message', message => {
                     //    .setURL('https://www.google.com/')
                       //  .setDescription(botMsg)
                     //bot.channels.get('337587604859912193').send(exampleEmbed);
-                    bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"\nLink: ' + msgLink);
+                    bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"\n[Link](msgLink));
             }
         }
     }
