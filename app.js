@@ -91,7 +91,7 @@ bot.on('message', message => {
                     //    .setURL('https://www.google.com/')
                       //  .setDescription(botMsg)
                     //bot.channels.get('337587604859912193').send(exampleEmbed);
-                    bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"\nLink: https://discord.com/channels/293792079702917125/" + message.channel + "/" + mmessage.ID');
+                    bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"\nLink: https://discord.com/channels/293792079702917125/" + message.channel + "/" + message.ID');
             }
         }
     }
