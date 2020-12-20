@@ -85,7 +85,7 @@ bot.on('message', message => {
             var testWord = eval(flaggedWordsRegEx[i]);
             if(message.content.match(testWord)){
                     var botMsg = message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"';
-                    var msgLink = 'https://discord.com/channels/293792079702917125/' + message.channel + '/' + message.ID;
+                    var msgLink = 'https://discord.com/channels/293792079702917125/' + message.channel.id + '/' + msgID;
                     //const exampleEmbed = new Discord.MessageEmbed()
                     //  .setColor('#0099ff')
                     //    .setTitle('New Flagged Message!')
