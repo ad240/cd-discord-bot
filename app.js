@@ -85,10 +85,10 @@ bot.on('message', message => {
             var testWord = eval(flaggedWordsRegEx[i]);
             if(message.content.match(testWord)){
                     var botMsg = message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"';
-                    const exampleEmbed = new Discord.MessageEmbed()
-                        .setColor('#0099ff')
-                        .setTitle('New Flagged Message!')
-                        .setURL('https://www.google.com/')
+                    //const exampleEmbed = new Discord.MessageEmbed()
+                    //  .setColor('#0099ff')
+                    //    .setTitle('New Flagged Message!')
+                    //    .setURL('https://www.google.com/')
                       //  .setDescription(botMsg)
                     //bot.channels.get('337587604859912193').send(exampleEmbed);
                     bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"');
