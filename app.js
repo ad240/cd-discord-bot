@@ -16,7 +16,8 @@ bot.on('message', message => {
     var sender = message.author;
     var msg = message.content.toUpperCase();
     var userlist = message.mentions.users;
-
+    var msgID = message.id;
+    
     // Ignore Bot Messages
     if(sender.id == '389149738219339786'){
         return;
@@ -83,6 +84,8 @@ bot.on('message', message => {
         for(var i=0; i<flaggedWords.length; i++){
             var testWord = eval(flaggedWordsRegEx[i]);
             if(message.content.match(testWord)){
+                    var botMsg = message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"';
+                    bot.channels.get('337587604859912193').send(botMsg + "TEST");
                     bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"');
             }
         }
