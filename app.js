@@ -84,7 +84,7 @@ bot.on('message', message => {
         for(var i=0; i<flaggedWords.length; i++){
             var testWord = eval(flaggedWordsRegEx[i]);
             if(message.content.match(testWord)){
-                    var botMsg = message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content.link("https://www.google.com/") + '"';
+                    var botMsg = message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + [message.content]("https://www.google.com/") + '"';
                     bot.channels.get('337587604859912193').send(botMsg);
                     bot.channels.get('337587604859912193').send(message.author + ' said the flagged word ' + flaggedWords[i] + ' in ' + message.channel + '. \nMessage: "' + message.content + '"');
             }
